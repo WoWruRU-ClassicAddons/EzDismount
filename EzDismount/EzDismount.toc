@@ -1,6 +1,12 @@
 ## Interface: 11200
-## Title: EzDismount
+## Title: EzDismount |cff7fff7f -Ace2-|r
 ## Notes: Dismounts you when opening Flightpath, or whenever "Cannot use while mounted" OR "Can't attack while mounted" errors appear, also drops druid shapeshifts and GhostWolf
+## Notes-ruRU: Спешивание с ездового животного, когда вы пытаетесь применить способность.
 ## SavedVariables: EzDismount_Config
+## Dependencies: !Libs
+
+Locale\Local_enUS.lua
+Locale\Local_ruRU.lua
+
 EzDismount_tables.lua
 EzDismount.xml

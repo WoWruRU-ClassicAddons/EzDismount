@@ -1,35 +1,31 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
 	<Script file="EzDismount.lua" />
-   <GameTooltip name="EzDTooltip" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate">
-   <Scripts>
-      <OnLoad>
-         this:SetOwner(UIParent, "ANCHOR_NONE");
-      </OnLoad>
-   </Scripts>
-   </GameTooltip>
-   <Frame name="EzDismount_core">
+	
+	<GameTooltip name="EzDTooltip" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				this:SetOwner(UIParent, "ANCHOR_NONE");
+			</OnLoad>
+		</Scripts>
+	</GameTooltip>
+	<Frame name="EzDismount_core">
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("AUCTION_HOUSE_SHOW");
+				this:RegisterEvent("TAXIMAP_OPENED");
+				this:RegisterEvent("VARIABLES_LOADED");
+				this:RegisterEvent("UI_ERROR_MESSAGE");
+			</OnLoad>
+			<OnEvent>
+				if (event == "AUCTION_HOUSE_SHOW") then EzDismount_chkerror("AUCTION"); end
+				if (event == "VARIABLES_LOADED") then EzDismount_onload(); end
+				if (event == "TAXIMAP_OPENED") then EzDismount_chkerror("TAXI"); end
+				if (event == "UI_ERROR_MESSAGE") then EzDismount_chkerror(arg1); end
+			</OnEvent>
+		</Scripts>
+	</Frame>
 
-   <Scripts>
-
-      <OnLoad>
-         this:RegisterEvent("AUCTION_HOUSE_SHOW");
-         this:RegisterEvent("TAXIMAP_OPENED");
-         this:RegisterEvent("VARIABLES_LOADED");
-         this:RegisterEvent("UI_ERROR_MESSAGE");
-      </OnLoad>
-
-      <OnEvent>
-         if (event == "AUCTION_HOUSE_SHOW") then EzDismount_chkerror("AUCTION"); end
-         if (event == "VARIABLES_LOADED") then EzDismount_onload(); end
-         if (event == "TAXIMAP_OPENED") then EzDismount_chkerror("TAXI"); end
-         if (event == "UI_ERROR_MESSAGE") then EzDismount_chkerror(arg1); end
-      </OnEvent>
-
-    </Scripts>
-
-</Frame>
-
-   <Frame name="EzDismount_Menu" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="UIParent">
+	<Frame name="EzDismount_Menu" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="UIParent">
 		<Size>
 			<AbsDimension x="435" y="435"/>
 		</Size>
@@ -50,7 +46,6 @@
 				<AbsValue val="32"/>
 			</EdgeSize>
 		</Backdrop>
-
 		<Layers>
 			<Layer level="ARTWORK">
 				<Texture name="EzDismountFrameTitle" file="Interface\DialogFrame\UI-DialogBox-Header">
@@ -65,6 +60,7 @@
 						</Anchor>
 					</Anchors>
 				</Texture>
+				
 				<FontString inherits="GameFontNormal" text="EzDismount_fullver">
 					<Anchors>
 						<Anchor point="TOP" relativeTo="EzDismount_Menu">
@@ -75,9 +71,7 @@
 					</Anchors>
 				</FontString>
 
-
 				<!-- Sit or stand Lines -->
-
 				<FontString name="EzDismount_Text_Status" inherits="GameFontNormal" text="">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="EzDismount_Menu">
@@ -138,7 +132,7 @@
 					</Anchors>
 				</FontString>
 
-                                <FontString name="EzDismount_Text_Auction" inherits="GameFontNormal" text="">
+				<FontString name="EzDismount_Text_Auction" inherits="GameFontNormal" text="">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="EzDismount_Menu">
 							<Offset>
@@ -169,8 +163,7 @@
 				</FontString>
 
 				<!-- Shaman -->
-
-                                <FontString name="EZDismount_ShamanTitle" inherits="GameFontNormal" text=" - Shaman Only -">
+				<FontString name="EZDismount_ShamanTitle" inherits="GameFontNormal" text="SHAMAN">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="EzDismount_Menu">
 							<Offset>
@@ -179,6 +172,7 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
+				
 				<FontString name="EzDismount_Text_Shaman" inherits="GameFontNormal" text="">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="EzDismount_Menu">
@@ -209,9 +203,8 @@
 					</Anchors>
 				</FontString>
 
-            <!-- Druids -->
-
-				<FontString name="EZDismount_DruidTitle" inherits="GameFontNormal" text=" - Druid Only -">
+				<!-- Druids -->
+				<FontString name="EZDismount_DruidTitle" inherits="GameFontNormal" text="DRUID">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="EzDismount_Menu">
 							<Offset>
@@ -251,7 +244,6 @@
 					</Anchors>
 				</FontString>
 
-
 				<FontString name="EzDismount_Text_Moonkin" inherits="GameFontNormal" text="">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="EzDismount_Menu">
@@ -271,6 +263,7 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
+				
 				<FontString name="EzDismount_Text_Moonkin_VON" inherits="GameFontNormal" text="">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="EzDismount_Menu">
@@ -281,9 +274,8 @@
 					</Anchors>
 				</FontString>
 
-            <!-- Priest -->
-
-                                <FontString name="EZDismount_PriestTitle" inherits="GameFontNormal" text=" - Priest Only -">
+				<!-- Priest -->
+				<FontString name="EZDismount_PriestTitle" inherits="GameFontNormal" text="PRIEST">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="EzDismount_Menu">
 							<Offset>
@@ -293,7 +285,7 @@
 					</Anchors>
 				</FontString>
 
-                                <FontString name="EzDismount_Text_Shadowform" inherits="GameFontNormal" text="">
+				<FontString name="EzDismount_Text_Shadowform" inherits="GameFontNormal" text="">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="EzDismount_Menu">
 							<Offset>
@@ -322,28 +314,19 @@
 					</Anchors>
 				</FontString>
 
-
-            <!-- Close button -->
-
-
+				<!-- Close button -->
 				<FontString name="EZDismount_DetPlayer" inherits="GameFontNormalSmall" text="">
 					<Anchors>
-					<Anchor point="BOTTOM" relitiveTo="EzDismount_Menu">
-						<Offset>
-							<AbsDimension x="0" y="13" />
-						</Offset>
-					</Anchor>
+						<Anchor point="BOTTOM" relitiveTo="EzDismount_Menu">
+							<Offset>
+								<AbsDimension x="0" y="13" />
+							</Offset>
+						</Anchor>
 					</Anchors>
 				</FontString>
-
 			</Layer>
 		</Layers>
-
-
 		<Frames>
-
-
-
 			<Button name="EzDismount_Close" inherits="GameMenuButtonTemplate" text="CLOSE">
 				<Anchors>
 					<Anchor point="CENTER" relativePoint="BOTTOM" relitiveTo="EzDismount_Menu">
@@ -360,7 +343,6 @@
 			</Button>
 
 			<!-- Add Buttons Here -->
-
 			<Button name="EzDismount_Button1" inherits="OptionsButtonTemplate" text="Toggle">
 				<Anchors>
 					<Anchor point="TOPLEFT">
@@ -375,7 +357,6 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-
 
 			<Button name="EzDismount_Button1b" inherits="OptionsButtonTemplate" text="Toggle">
 				<Anchors>
@@ -392,7 +373,7 @@
 				</Scripts>
 			</Button>
                         
-                        <Button name="EzDismount_Button1c" inherits="OptionsButtonTemplate" text="Toggle">
+			<Button name="EzDismount_Button1c" inherits="OptionsButtonTemplate" text="Toggle">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
@@ -452,7 +433,7 @@
 				</Scripts>
 			</Button>
 
-                        <Button name="EzDismount_Button5" inherits="OptionsButtonTemplate" text="Toggle">
+			<Button name="EzDismount_Button5" inherits="OptionsButtonTemplate" text="Toggle">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
@@ -466,20 +447,17 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-
-			</Frames>
-
+		</Frames>
 		<Scripts>
 			<OnShow>
 				EzDismount_Refresh();
 			</OnShow>
-         <OnMouseDown>
-            this:StartMoving();
-         </OnMouseDown>
-         <OnMouseUp>
-            this:StopMovingOrSizing();
-         </OnMouseUp>
+		<OnMouseDown>
+			this:StartMoving();
+		</OnMouseDown>
+		<OnMouseUp>
+			this:StopMovingOrSizing();
+		</OnMouseUp>
 		</Scripts>
 	</Frame>
-
 </Ui>
